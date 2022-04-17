@@ -1,0 +1,1 @@
+# fastapi-sqlalchemy-media-react-app
