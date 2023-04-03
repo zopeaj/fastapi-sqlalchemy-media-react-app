@@ -1,9 +1,3 @@
-import os, sys
-from dotenv import load_dotenv
-load_dotenv()
-file = os.environ['FILE_PATH']
-sys.path.append(file)
-
 from app.db.base import Base
 from typing import Any
 from sqlalchemy import String, Column, Integer
@@ -36,6 +30,7 @@ class Customer(Base):
 
     def getPicture(self) -> Any
         return self.picture
+
 
     @property
     def object_id(self):

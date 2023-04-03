@@ -9,7 +9,7 @@ class CustomerRepository:
     def __init__(self):
         self.db: Session = Depends(get_db)
 
-    def saveCustomer(self, customer: CustomerCreate) -> Customer:
+    def save(self, customer: CustomerCreate) -> Customer:
         customer_db = Customer(
             customer.getFirstName(),
             customer.getLastName(),
@@ -21,7 +21,7 @@ class CustomerRepository:
         self.db.refresh(customer_db)
         return customer_db
 
-    def deleteCustomer(self, *, customer_id: int) -> Customer:
+    def delete(self, *, customer_id: int) -> Customer:
         customer_obj = self.db.query(Customer).get(customer_id)
         self.db.delete(customer_obj)
         self.db.commit()
@@ -49,7 +49,7 @@ class CustomerRepository:
 
 
 
-    def updateCustomer(self, customer_id: int, customer_update: Union[UpdateCustomer, Dict[str, Any]], files: Any) -> Customer:
+    def update(self, customer_id: int, customer_update: Union[UpdateCustomer, Dict[str, Any]], files: Any) -> Customer:
         customer_to_update = self.getCustomerById(customer_id)
         customer_obj_data = jsonable_encoders(customer_to_update)
         if isinstance(customer_update, dict):
@@ -72,10 +72,10 @@ class CustomerRepository:
         return customer_to_update
 
 
-    def getCustomerById(self, customer_id: int) -> Optional[Customer]:
+    def getById(self, customer_id: int) -> Optional[Customer]:
         return self.db.query(Customer).filter(Customer.getId() == customer_id).first()
 
-    def getCustomerByEmail(self, customer_email: str) -> Optional[Customer]
+    def getByEmail(self, customer_email: str) -> Optional[Customer]
         return self.db.query(Customer).filter(Customer.getEmail() == customer_id).first()
 
 customerRepository = CustomerRepository()
