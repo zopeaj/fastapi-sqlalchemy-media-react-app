@@ -21,7 +21,6 @@ class CustomerRepository:
         self.db.refresh(customer_db)
         return customer_db
 
-
     def deleteCustomer(self, *, customer_id: int) -> Customer:
         customer_obj = self.db.query(Customer).get(customer_id)
         self.db.delete(customer_obj)
@@ -47,3 +46,5 @@ class CustomerRepository:
 
     def getCustomerByEmail(self, customer_email: str) -> Optional[Customer]
         return self.db.query(Customer).filter(Customer.getEmail() == customer_id).first()
+
+customerRepository = CustomerRepository()
