@@ -1,17 +1,37 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
+from typing import Optional
+
 
 class CustomerInDB(BaseModel):
-    pass
+    id: Optional[int] = None
+    firstname: Optional[str] = None
+    lastname: Optional[str] = None
+    email: Optional[EmailStr] = None
+    age: Optional[int] = None
+    picture: Optional[Any] = None
 
 class CustomerCreateResponse(CustomerInDB):
-    pass
+    firstname: Optional[str] = None
+    lastname: Optional[str] = None
+    email: Optional[EmailStr] = None
+    age: Optional[int] =  None
+    picture: Optional[Any] = None
 
 class CustomerUpdateResponse(CustomerInDB):
-    pass
+    firstname: Optional[str] = None
+    lastname: Optional[str] = None
+    email: Optional[EmailStr] = None
+    age: Optional[int] =  None
+    picture: Optional[Any] = None
+
 
 class CustomerDeleteResponse(CustomerInDB):
-    pass
+    success_data: Optional[str] = None
+
 
 class CustomerQueryResponse(CustomerInDB):
-    pass
+    id: Optional[int] = None
+    lastname: Optional[str] = None
+    email: Optional[str] = None
+
 
